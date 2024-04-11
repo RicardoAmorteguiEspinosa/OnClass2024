@@ -33,10 +33,8 @@ public class TechnologyRestControllerAdapter {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Technology added successfully",
                     content = @Content(schema = @Schema(implementation = Technology.class))),
-            @ApiResponse(responseCode = "400", description = "Invalid request format",
-                    content = @Content),
-            @ApiResponse(responseCode = "500", description = "Internal server error",
-                    content = @Content)
+            @ApiResponse(responseCode = "400", description = "Invalid request format"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
     })
     @PostMapping("/")
     public ResponseEntity<String> addTechnology(@Valid @RequestBody AddTechnologyRequest request) {
@@ -48,8 +46,7 @@ public class TechnologyRestControllerAdapter {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Technologies retrieved successfully",
                     content = @Content(schema = @Schema(implementation = Technology.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error",
-                    content = @Content)
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
     })
     @GetMapping("/")
     public ResponseEntity<List<TechnologyResponse>> getAllTechnologies(

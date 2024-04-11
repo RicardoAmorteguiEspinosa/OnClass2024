@@ -1,12 +1,16 @@
 package com.pragma.arquetipobootcamp2024.adapters.driving.http.controller;
 
 import com.pragma.arquetipobootcamp2024.adapters.driving.http.controller.TechnologyRestControllerAdapter;
+import com.pragma.arquetipobootcamp2024.adapters.driving.http.dto.response.TechnologyResponse;
+import com.pragma.arquetipobootcamp2024.domain.model.Technology;
 import com.pragma.arquetipobootcamp2024.testData.RequestCase;
 import com.pragma.arquetipobootcamp2024.adapters.driving.http.mapper.ITechnologyRequestMapper;
 import com.pragma.arquetipobootcamp2024.adapters.driving.http.mapper.ITechnologyResponseMapper;
 import com.pragma.arquetipobootcamp2024.domain.api.ITechnologyServicePort;
+import com.pragma.arquetipobootcamp2024.testData.TechnologyFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -21,12 +25,17 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -68,6 +77,39 @@ class TechnologyRestControllerAdapterTest {
             assertTrue(resolvedException instanceof MethodArgumentNotValidException);
         }
     }
+
+    @Test
+    @DisplayName("Test to get all technologies")
+    void testGetAllTechnologies() throws Exception {
+        // Given
+        List<Technology> expectedTechnologies = Arrays.asList(
+                TechnologyFactory.createTechnology(),
+                TechnologyFactory.createTechnology(),
+                TechnologyFactory.createTechnology()
+        );
+
+        when(technologyServicePort.getAllTechnologies(0, 10, true)).thenReturn(expectedTechnologies);
+
+        List<TechnologyResponse> expectedResponses = Arrays.asList(
+                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(0)),
+                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(1)),
+                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(2))
+        );
+        when(technologyResponseMapper.toTechnologyResponseList(expectedTechnologies)).thenReturn(expectedResponses);
+
+        // When & Then
+
+        mockMvc.perform(get("/technology/")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value(expectedResponses.get(0).getName()))
+                .andExpect(jsonPath("$[0].description").value(expectedResponses.get(0).getDescription()))
+                .andExpect(jsonPath("$[1].name").value(expectedResponses.get(1).getName()))
+                .andExpect(jsonPath("$[1].description").value(expectedResponses.get(1).getDescription()))
+                .andExpect(jsonPath("$[2].name").value(expectedResponses.get(2).getName()))
+                .andExpect(jsonPath("$[2].description").value(expectedResponses.get(2).getDescription()));
+    }
+
 
     private static Stream<Arguments> provideTechnologyRequests() {
         return Stream.of(
