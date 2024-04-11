@@ -40,6 +40,26 @@ class TechnologyUseCaseTest {
     }
 
 
+    @Test
+    void getAllTechnologies() {
+        // GIVEN
+        Integer page = 0;
+        Integer size = 10;
+        boolean ascendingOrder = true;
+        List<Technology> expectedTechnologies = Arrays.asList(
+                TechnologyFactory.createTechnology(),
+                TechnologyFactory.createTechnology()
+        );
+        when(technologyPersistencePort.getAllTechnologies(page, size, ascendingOrder)).thenReturn(expectedTechnologies);
+
+        // WHEN
+        List<Technology> actualTechnologies = technologyUseCase.getAllTechnologies(page, size, ascendingOrder);
+
+        // THEN
+        assertEquals(expectedTechnologies.size(), actualTechnologies.size());
+        assertTrue(expectedTechnologies.containsAll(actualTechnologies));
+        verify(technologyPersistencePort, times(1)).getAllTechnologies(page, size, ascendingOrder);
+    }
 
 
 
