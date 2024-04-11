@@ -1,12 +1,14 @@
 package com.pragma.arquetipobootcamp2024.testData;
 
+import com.pragma.arquetipobootcamp2024.adapters.driving.http.dto.response.CapabilityResponse;
+import com.pragma.arquetipobootcamp2024.adapters.driving.http.dto.response.TechnologyByCapabilityResponse;
 import com.pragma.arquetipobootcamp2024.domain.model.Capability;
 import com.pragma.arquetipobootcamp2024.domain.model.Technology;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
+import java.util.stream.Collectors;
 
 public class CapabilityFactory {
     private static final Random random = new Random();
@@ -48,5 +50,14 @@ public class CapabilityFactory {
         return capabilities;
     }
 
-
+    public static List<CapabilityResponse> toCapabilityResponseList(List<Capability> capabilities) {
+        return capabilities.stream()
+                .map(capability -> {
+                    List<TechnologyByCapabilityResponse> technologiesList = capability.getTechnologiesList().stream()
+                            .map(technology -> new TechnologyByCapabilityResponse(technology.getId(), technology.getName()))
+                            .collect(Collectors.toList());
+                    return new CapabilityResponse(capability.getId(), capability.getName(), capability.getDescription(), technologiesList);
+                })
+                .collect(Collectors.toList());
+    }
 }
