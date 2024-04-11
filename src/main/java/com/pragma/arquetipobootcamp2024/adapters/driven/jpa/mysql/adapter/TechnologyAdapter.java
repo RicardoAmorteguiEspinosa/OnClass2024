@@ -7,6 +7,12 @@ import com.pragma.arquetipobootcamp2024.domain.model.Technology;
 import com.pragma.arquetipobootcamp2024.domain.spi.ITechnologyPersistencePort;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import java.util.List;
+
 @RequiredArgsConstructor
 public class TechnologyAdapter implements ITechnologyPersistencePort {
     private final ITechnologyRepository technologyRepository;
@@ -21,4 +27,9 @@ public class TechnologyAdapter implements ITechnologyPersistencePort {
         technologyRepository.save(technologyEntityMapper.toEntity(technology));
     }
 
+    @Override
+    public List<Technology> getAllTechnologies(Integer page, Integer size, boolean ascendingOrder) {
+        Pageable pagination = PageRequest.of(page, size, ascendingOrder ? Sort.by("name").ascending() : Sort.by("name").descending());
+        return technologyEntityMapper.toModelList(technologyRepository.findAll(pagination).getContent());
+    }
 }
