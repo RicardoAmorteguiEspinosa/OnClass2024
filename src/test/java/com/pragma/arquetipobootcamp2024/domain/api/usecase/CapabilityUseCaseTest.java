@@ -59,4 +59,20 @@ class CapabilityUseCaseTest {
         verify(capabilityPersistencePort, times(1)).saveCapability(capability);
     }
 
+    @Test
+    void testGetAllCapabilities() {
+        // Given
+        List<Capability> expectedCapabilities = Arrays.asList(
+                CapabilityFactory.createCapability(1),
+                CapabilityFactory.createCapability(2)
+        );
+
+        when(capabilityPersistencePort.getAllCapabilities(anyInt(), anyInt(), anyString())).thenReturn(expectedCapabilities);
+
+        // When
+        List<Capability> actualCapabilities = capabilityUseCase.getAllCapabilities(0, 10, "ASC");
+
+        // Then
+        assertEquals(expectedCapabilities, actualCapabilities);
+    }
 }

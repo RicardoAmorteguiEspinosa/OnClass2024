@@ -27,6 +27,10 @@ public class CapabilityUseCase implements ICapabilityServicePort {
         this.capabilityPersistencePort.saveCapability(capability);
     }
 
+    @Override
+    public List<Capability> getAllCapabilities(Integer page, Integer size, String order) {
+        return this.capabilityPersistencePort.getAllCapabilities(page, size, order);
+    }
 
     private void validateUniqueTechnologyIds(List<Technology> technologies) {
         Set<Long> technologyIds = new HashSet<>();
@@ -38,4 +42,7 @@ public class CapabilityUseCase implements ICapabilityServicePort {
             }
         }
     }
+
+
+
 }
