@@ -91,9 +91,9 @@ class TechnologyRestControllerAdapterTest {
         when(technologyServicePort.getAllTechnologies(0, 10, true)).thenReturn(expectedTechnologies);
 
         List<TechnologyResponse> expectedResponses = Arrays.asList(
-                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(0)),
-                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(1)),
-                TechnologyFactory.technologyToTechnologyResponse(expectedTechnologies.get(2))
+                TechnologyFactory.toTechnologyResponse(expectedTechnologies.get(0)),
+                TechnologyFactory.toTechnologyResponse(expectedTechnologies.get(1)),
+                TechnologyFactory.toTechnologyResponse(expectedTechnologies.get(2))
         );
         when(technologyResponseMapper.toTechnologyResponseList(expectedTechnologies)).thenReturn(expectedResponses);
 

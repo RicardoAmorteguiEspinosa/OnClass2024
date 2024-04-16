@@ -32,12 +32,7 @@ public class CapabilityFactory {
         return new Capability(null, name, description, technologies);
     }
 
-    public static Capability toModel(Long id, String name, String description, List<Technology> technologiesList) {
-        Capability capability = new Capability(id, name, description, technologiesList);
-        return capability;
-    }
-
-    static String getRandomName() {
+    private static String getRandomName() {
         String[] names = new String[] { "Web Development", "Database Management", "Backend Programming", "Data Science", "Cybersecurity", "Mobile App Development" };
         return names[random.nextInt(names.length)];
     }
@@ -45,7 +40,7 @@ public class CapabilityFactory {
     public static List<Capability> createCapabilityList(int count) {
         List<Capability> capabilities = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
-            capabilities.add(new Capability((long)i, null, null, null));
+            capabilities.add(createCapability(i));
         }
         return capabilities;
     }
