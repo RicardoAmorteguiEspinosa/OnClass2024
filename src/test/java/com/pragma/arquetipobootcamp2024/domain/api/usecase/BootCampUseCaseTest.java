@@ -52,4 +52,28 @@ class BootCampUseCaseTest {
         // THEN
         verify(bootCampPersistencePort, times(1)).saveBootCamp(bootCamp);
     }
+
+
+    @Test
+    void testGetAllBootCamps() {
+        // Given
+        List<BootCamp> bootCamps = Arrays.asList(
+                BootCampFactory.createBootCamp(),
+                BootCampFactory.createBootCamp()
+        );
+        when(bootCampPersistencePort.getAllBootCamps(0, 10, "ASC")).thenReturn(bootCamps);
+
+        // When
+        List<BootCamp> result = bootCampUseCase.getAllBootCamps(0, 10, "ASC");
+
+        // Then
+        assertEquals(bootCamps.size(), result.size());
+        for (int i = 0; i < bootCamps.size(); i++) {
+            BootCamp expected = bootCamps.get(i);
+            BootCamp actual = result.get(i);
+            assertEquals(expected.getId(), actual.getId());
+            assertEquals(expected.getName(), actual.getName());
+            assertEquals(expected.getDescription(), actual.getDescription());
+        }
+    }
 }

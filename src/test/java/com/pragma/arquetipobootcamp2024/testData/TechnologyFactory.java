@@ -16,17 +16,9 @@ public class TechnologyFactory {
         return new Technology(null, name, description);
     }
 
-    public static Technology toModel(Long id, String name, String description) {
-        return new Technology(id, name, description);
-    }
-    static String getRandomName() {
+    private static String getRandomName() {
         String[] names = new String[] { "Java", "Python", "JavaScript", "C#", "Ruby", "Go", "Kotlin", "Swift", "Rust", "Scala" };
         return names[random.nextInt(names.length)];
-    }
-
-    public static TechnologyResponse technologyToTechnologyResponse(Technology technology)
-    {
-        return new TechnologyResponse(technology.getId(), technology.getName(), technology.getDescription());
     }
 
     public static List<Technology> createTechnologyList(int count) {
@@ -35,5 +27,11 @@ public class TechnologyFactory {
             technologies.add(new Technology((long)i, getRandomName(), null));
         }
         return technologies;
-    }}
+    }
 
+    public static TechnologyResponse toTechnologyResponse(Technology technology)
+    {
+        return new TechnologyResponse(technology.getId(), technology.getName(), technology.getDescription());
+    }
+
+}
