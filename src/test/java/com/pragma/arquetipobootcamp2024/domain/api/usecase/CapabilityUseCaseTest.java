@@ -60,6 +60,7 @@ class CapabilityUseCaseTest {
     }
 
     @Test
+    @DisplayName("Test getAllCapabilities - Retrieves all capabilities with pagination")
     void testGetAllCapabilities() {
         // Given
         List<Capability> expectedCapabilities = Arrays.asList(
