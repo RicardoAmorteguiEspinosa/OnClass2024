@@ -30,8 +30,7 @@ public class CapabilityRestControllerAdapter {
 
     @Operation(summary = "Add a new capability to the system")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Capability added successfully",
-                    content = @Content(schema = @Schema(implementation = Capability.class))),
+            @ApiResponse(responseCode = "201", description = "Capability added successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid request format"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })

@@ -31,8 +31,7 @@ public class TechnologyRestControllerAdapter {
 
     @Operation(summary = "Add a new technology to the system.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Technology added successfully",
-                    content = @Content(schema = @Schema(implementation = Technology.class))),
+            @ApiResponse(responseCode = "201", description = "Technology added successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid request format"),
             @ApiResponse(responseCode = "500", description = "Internal server error"),
     })
