@@ -17,20 +17,19 @@ public class TechnologyFactory {
     }
 
     private static String getRandomName() {
-        String[] names = new String[] { "Java", "Python", "JavaScript", "C#", "Ruby", "Go", "Kotlin", "Swift", "Rust", "Scala" };
+        String[] names = new String[]{"Java", "Python", "JavaScript", "C#", "Ruby", "Go", "Kotlin", "Swift", "Rust", "Scala"};
         return names[random.nextInt(names.length)];
     }
 
     public static List<Technology> createTechnologyList(int count) {
         List<Technology> technologies = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
-            technologies.add(new Technology((long)i, getRandomName(), null));
+            technologies.add(new Technology((long) i, getRandomName(), null));
         }
         return technologies;
     }
 
-    public static TechnologyResponse toTechnologyResponse(Technology technology)
-    {
+    public static TechnologyResponse toTechnologyResponse(Technology technology) {
         return new TechnologyResponse(technology.getId(), technology.getName(), technology.getDescription());
     }
 

@@ -1,5 +1,6 @@
 package com.pragma.arquetipobootcamp2024.testData;
 
+import com.pragma.arquetipobootcamp2024.adapters.driving.http.dto.response.VersionResponse;
 import com.pragma.arquetipobootcamp2024.domain.model.Version;
 
 import java.time.LocalDate;
@@ -38,5 +39,13 @@ public class VersionFactory {
         return LocalDate.ofEpochDay(randomDay);
     }
 
-
+    public static VersionResponse toVersionResponse(Version version) {
+        return new VersionResponse(
+                version.getId(),
+                version.getStartDate(),
+                version.getEndDate(),
+                version.getQuota(),
+                version.getIdBootCamp()
+        );
+    }
 }

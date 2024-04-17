@@ -40,6 +40,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(MockitoExtension.class)
 class BootCampRestControllerAdapterTest {
 
@@ -79,8 +80,7 @@ class BootCampRestControllerAdapterTest {
 
         if (expectedStatus == HttpStatus.CREATED) {
             verify(bootCampServicePort).saveBootCamp(any());
-        }
-        else if (expectedStatus == HttpStatus.BAD_REQUEST) {
+        } else if (expectedStatus == HttpStatus.BAD_REQUEST) {
             Exception resolvedException = mvcResult.getResolvedException();
             assertTrue(resolvedException instanceof MethodArgumentNotValidException);
         }

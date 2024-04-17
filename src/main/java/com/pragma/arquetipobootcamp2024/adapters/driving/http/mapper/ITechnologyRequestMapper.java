@@ -10,6 +10,5 @@ import org.mapstruct.Mapping;
 public interface ITechnologyRequestMapper {
 
     @Mapping(target = "id", ignore = true)
-
     Technology addRequestToTechnology(AddTechnologyRequest addTechnologyRequest);
 }

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
-public interface IBootCampRepository extends JpaRepository<BootCampEntity, Long>{
+public interface IBootCampRepository extends JpaRepository<BootCampEntity, Long> {
     Optional<BootCampEntity> findByName(String name);
 
     @Query("SELECT b FROM BootCampEntity b " +

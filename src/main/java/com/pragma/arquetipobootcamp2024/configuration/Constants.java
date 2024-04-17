@@ -1,7 +1,7 @@
 package com.pragma.arquetipobootcamp2024.configuration;
 
 public class Constants {
-    private Constants(){
+    private Constants() {
         throw new IllegalStateException("utility class");
     }
 

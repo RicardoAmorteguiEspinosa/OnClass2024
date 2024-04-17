@@ -11,7 +11,9 @@ import java.util.List;
 public interface IVersionEntityMapper {
     @Mapping(source = "bootCamp.id", target = "idBootCamp")
     Version toModel(VersionEntity versionEntity);
+
     @Mapping(source = "idBootCamp", target = "bootCamp.id")
     VersionEntity toEntity(Version version);
+
     List<Version> toModelList(List<VersionEntity> versionEntities);
 }

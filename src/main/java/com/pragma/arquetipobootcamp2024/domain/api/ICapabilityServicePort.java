@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ICapabilityServicePort {
     void saveCapability(Capability capability);
+
     List<Capability> getAllCapabilities(Integer page, Integer size, String order);
 }

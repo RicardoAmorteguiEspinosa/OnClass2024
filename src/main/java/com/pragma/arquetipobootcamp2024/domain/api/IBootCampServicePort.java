@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IBootCampServicePort {
     void saveBootCamp(BootCamp bootcamp);
+
     List<BootCamp> getAllBootCamps(Integer page, Integer size, String order);
 
 }

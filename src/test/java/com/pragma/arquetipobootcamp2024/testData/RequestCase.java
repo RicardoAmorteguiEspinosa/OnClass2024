@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 public class RequestCase {
     private final String requestBody;
     private final HttpStatus expectedStatus;
+
     public RequestCase(String requestBody, HttpStatus expectedStatus) {
         this.requestBody = requestBody;
         this.expectedStatus = expectedStatus;

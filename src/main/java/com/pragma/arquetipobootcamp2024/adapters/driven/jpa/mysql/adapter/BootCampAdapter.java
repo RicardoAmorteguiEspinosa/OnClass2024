@@ -15,9 +15,10 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class BootCampAdapter implements IBootCampPersistencePort{
+public class BootCampAdapter implements IBootCampPersistencePort {
     private final IBootCampRepository bootCampRepository;
     private final IBootCampEntityMapper bootCampEntityMapper;
+
     @Override
     public void saveBootCamp(BootCamp bootCamp) {
         if (bootCampRepository.findByName(bootCamp.getName()).isPresent()) {

@@ -43,7 +43,7 @@ public class CapabilityRestControllerAdapter {
     @Operation(summary = "Get all capabilities with pagination ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Capabilities retrieved successfully",
-            content = @Content(schema = @Schema(implementation = Capability.class))),
+                    content = @Content(schema = @Schema(implementation = Capability.class))),
             @ApiResponse(responseCode = "500", description = "Internal server error"),
     })
     @GetMapping("/")

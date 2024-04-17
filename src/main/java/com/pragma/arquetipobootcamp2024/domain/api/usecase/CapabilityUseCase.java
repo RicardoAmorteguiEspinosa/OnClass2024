@@ -44,5 +44,4 @@ public class CapabilityUseCase implements ICapabilityServicePort {
     }
 
 
-
 }

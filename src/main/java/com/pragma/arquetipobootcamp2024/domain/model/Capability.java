@@ -1,6 +1,7 @@
 package com.pragma.arquetipobootcamp2024.domain.model;
 
 import java.util.List;
+
 public class Capability {
     private final Long id;
     private final String name;

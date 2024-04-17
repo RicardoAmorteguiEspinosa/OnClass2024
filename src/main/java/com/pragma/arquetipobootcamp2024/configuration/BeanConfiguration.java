@@ -38,7 +38,6 @@ public class BeanConfiguration {
     private final IVersionEntityMapper versionEntityMapper;
 
 
-
     @Bean
     public ITechnologyPersistencePort technologyPersistencePort() {
         return new TechnologyAdapter(technologyRepository, technologyEntityMapper);
@@ -68,6 +67,7 @@ public class BeanConfiguration {
     public BootCampUseCase bootCampServicePort() {
         return new BootCampUseCase(bootCampPersistencePort());
     }
+
     @Bean
     public IVersionPersistencePort versionPersistencePort() {
         return new VersionAdapter(versionRepository, versionEntityMapper);

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class CapabilityFactory {
     private static final Random random = new Random();
+
     public static Capability createCapability() {
         String name = getRandomName();
         String description = "Description for " + name;
@@ -33,7 +34,7 @@ public class CapabilityFactory {
     }
 
     private static String getRandomName() {
-        String[] names = new String[] { "Web Development", "Database Management", "Backend Programming", "Data Science", "Cybersecurity", "Mobile App Development" };
+        String[] names = new String[]{"Web Development", "Database Management", "Backend Programming", "Data Science", "Cybersecurity", "Mobile App Development"};
         return names[random.nextInt(names.length)];
     }
 
