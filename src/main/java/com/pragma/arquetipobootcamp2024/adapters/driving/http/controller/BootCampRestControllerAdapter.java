@@ -28,11 +28,7 @@ public class BootCampRestControllerAdapter {
     private final IBootCampResponseMapper bootCampResponseMapper;
 
     @Operation(summary = "Add a new boot camp to the system")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Boot camp added successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid request format"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
+    @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Boot camp added successfully"), @ApiResponse(responseCode = "400", description = "Invalid request format"), @ApiResponse(responseCode = "500", description = "Internal server error")})
     @PostMapping("/")
     public ResponseEntity<String> addBootCamp(@Valid @RequestBody AddBootCampRequest request) {
         bootCampServicePort.saveBootCamp(bootCampRequestMapper.addRequestToBootCamp(request));
@@ -40,18 +36,11 @@ public class BootCampRestControllerAdapter {
     }
 
     @Operation(summary = "Get all boot camps with pagination")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Boot camps retrieved successfully",
-                    content = @Content(schema = @Schema(implementation = BootCampResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal server error"),
-    })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Boot camps retrieved successfully", content = @Content(schema = @Schema(implementation = BootCampResponse.class))), @ApiResponse(responseCode = "500", description = "Internal server error"),})
     @GetMapping("/")
-    public ResponseEntity<List<BootCampResponse>> getBooCamp(
-            @RequestParam(required = false, defaultValue = "0") Integer page,
-            @RequestParam(required = false, defaultValue = "10") Integer size,
-            @RequestParam(required = false, defaultValue = "ASC") String order) {
+    public ResponseEntity<List<BootCampResponse>> getBooCamp(@RequestParam(required = false, defaultValue = "0") Integer page, @RequestParam(required = false, defaultValue = "10") Integer size, @RequestParam(required = false, defaultValue = "ASC") String order) {
 
         return ResponseEntity.ok(bootCampResponseMapper.toBootCampResponseList(bootCampServicePort.getAllBootCamps(page, size, order)));
     }
 
- }
+}

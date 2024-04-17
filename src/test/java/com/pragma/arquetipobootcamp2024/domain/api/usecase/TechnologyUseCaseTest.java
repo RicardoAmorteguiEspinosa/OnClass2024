@@ -62,14 +62,4 @@ class TechnologyUseCaseTest {
     }
 
 
-
-
-
-
-
-
-
-
-
-
 }

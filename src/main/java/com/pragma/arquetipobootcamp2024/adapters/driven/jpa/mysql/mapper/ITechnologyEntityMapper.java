@@ -10,6 +10,8 @@ import java.util.List;
 public interface ITechnologyEntityMapper {
 
     Technology toModel(TechnologyEntity technologyEntity);
+
     TechnologyEntity toEntity(Technology technology);
+
     List<Technology> toModelList(List<TechnologyEntity> productEntities);
 }

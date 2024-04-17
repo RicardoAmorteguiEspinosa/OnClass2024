@@ -32,7 +32,7 @@ public class BootCampFactory {
     }
 
     static String getRandomName() {
-        String[] names = new String[] { "Coding Bootcamp", "Data Science Bootcamp", "Web Development Bootcamp", "Cybersecurity Bootcamp", "Mobile App Development Bootcamp" };
+        String[] names = new String[]{"Coding Bootcamp", "Data Science Bootcamp", "Web Development Bootcamp", "Cybersecurity Bootcamp", "Mobile App Development Bootcamp"};
         return names[random.nextInt(names.length)];
     }
 

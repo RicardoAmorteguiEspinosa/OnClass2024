@@ -47,4 +47,49 @@ class VersionUseCaseTest {
         verify(versionPersistencePort, never()).saveVersion(any());
     }
 
+    @Test
+    void testGetAllVersions() {
+        // Given
+        List<Version> versions = Arrays.asList(
+                VersionFactory.createVersion(1l, 20),
+                VersionFactory.createVersion(2l, 19)
+        );
+
+
+        when(versionPersistencePort.getAllVersions(anyInt(), anyInt(), anyString())).thenReturn(versions);
+
+        // When
+        List<Version> result = versionUseCase.getAllVersions(0, 10, "startDate");
+
+        // Then
+        Assertions.assertEquals(versions.size(), result.size());
+
+        for (Version version : result) {
+            Assertions.assertTrue(versions.contains(version));
+        }
+    }
+
+    @Test
+    void testGetAllVersionsByBootCamp() {
+        // Given
+        long bootCampId = 20;
+        List<Version> versions = Arrays.asList(
+                VersionFactory.createVersion(1l, bootCampId),
+                VersionFactory.createVersion(2l, bootCampId),
+                VersionFactory.createVersion(3l, bootCampId)
+
+        );
+
+        when(versionPersistencePort.getAllVersionsByBootCamp(anyInt(), anyInt(), anyString(), eq(bootCampId))).thenReturn(versions);
+
+        // When
+        List<Version> result = versionUseCase.getAllVersionsByBootCamp(0, 10, "startDate", bootCampId);
+
+        // Then
+        Assertions.assertEquals(versions.size(), result.size());
+
+        for (Version version : result) {
+            Assertions.assertEquals(bootCampId, version.getIdBootCamp());
+        }
+    }
 }

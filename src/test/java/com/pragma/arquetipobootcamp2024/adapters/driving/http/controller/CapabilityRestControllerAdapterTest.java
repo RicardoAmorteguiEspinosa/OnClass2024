@@ -39,6 +39,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -66,7 +67,7 @@ class CapabilityRestControllerAdapterTest {
     @ParameterizedTest
     @DisplayName("Test adding a capability with different request cases")
     @MethodSource("provideCapabilityRequests")
-    void testAddCapability(RequestCase  testCase) throws Exception {
+    void testAddCapability(RequestCase testCase) throws Exception {
         // Given
         String requestBody = testCase.getRequestBody();
         HttpStatus expectedStatus = testCase.getExpectedStatus();
@@ -80,12 +81,12 @@ class CapabilityRestControllerAdapterTest {
 
         if (expectedStatus == HttpStatus.CREATED) {
             verify(capabilityServicePort).saveCapability(any());
-        }
-        else if (expectedStatus == HttpStatus.BAD_REQUEST) {
+        } else if (expectedStatus == HttpStatus.BAD_REQUEST) {
             Exception resolvedException = mvcResult.getResolvedException();
             assertTrue(resolvedException instanceof MethodArgumentNotValidException);
         }
     }
+
     @Test
     @DisplayName("Test retrieving all capabilities from the controller")
     void testGetAllCapability() throws Exception {

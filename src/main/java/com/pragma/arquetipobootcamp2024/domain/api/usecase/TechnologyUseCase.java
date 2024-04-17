@@ -18,6 +18,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     public void saveTechnology(Technology technology) {
         productPersistencePort.saveTechnology(technology);
     }
+
     @Override
     public List<Technology> getAllTechnologies(Integer page, Integer size, boolean ascendingOrder) {
         return productPersistencePort.getAllTechnologies(page, size, ascendingOrder);

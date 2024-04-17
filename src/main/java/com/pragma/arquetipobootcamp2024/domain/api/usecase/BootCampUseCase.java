@@ -25,6 +25,7 @@ public class BootCampUseCase implements IBootCampServicePort {
 
         this.bootCampPersistencePort.saveBootCamp(bootCamp);
     }
+
     @Override
     public List<BootCamp> getAllBootCamps(Integer page, Integer size, String order) {
         return this.bootCampPersistencePort.getAllBootCamps(page, size, order);

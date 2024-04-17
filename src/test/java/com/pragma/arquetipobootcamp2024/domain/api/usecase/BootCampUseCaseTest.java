@@ -39,6 +39,7 @@ class BootCampUseCaseTest {
         assertThrows(RepeatedItemsInTheListException.class, () -> bootCampUseCase.saveBootCamp(bootCamp));
         verify(bootCampPersistencePort, never()).saveBootCamp(bootCamp);
     }
+
     @Test
     @DisplayName("Given a boot camp with unique capability IDs, when saving boot camp, then validate and save")
     void testSaveBootCamp() {

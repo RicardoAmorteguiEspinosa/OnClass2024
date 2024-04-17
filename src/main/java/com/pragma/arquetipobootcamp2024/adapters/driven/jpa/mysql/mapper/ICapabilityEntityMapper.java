@@ -12,7 +12,9 @@ import java.util.List;
 public interface ICapabilityEntityMapper {
     @Mapping(source = "technologiesList", target = "technologiesList")
     Capability toModel(CapabilityEntity capabilityEntity);
+
     @Mapping(source = "technologiesList", target = "technologiesList")
     CapabilityEntity toEntity(Capability capability);
+
     List<Capability> toModelList(List<CapabilityEntity> capabilitiesEntities);
 }
